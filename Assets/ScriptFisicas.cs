@@ -20,7 +20,28 @@ public class ScriptFisicas : MonoBehaviour
                 Debug.Log("Espacio pulsado");
                 this.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
             }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            transform.localPosition += Vector3.forward;
 
-        
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            transform.localPosition += Vector3.back;
+
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.localPosition += Vector3.left;
+
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.localPosition += Vector3.right;
+
+        }
+
+
+
     }
 }
