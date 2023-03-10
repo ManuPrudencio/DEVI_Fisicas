@@ -6,42 +6,62 @@ public class ScriptFisicas : MonoBehaviour
 {
     [SerializeField]
     public int jumpForce = 1;
+
+    [SerializeField]
+    public bool canJump;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKeyDown( KeyCode.Space ) )
-            {
-                Debug.Log("Espacio pulsado");
-                this.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
-            }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.localPosition += Vector3.forward;
+            Debug.Log("Espacio pulsado");
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime);
 
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
-            transform.localPosition += Vector3.back;
+            transform.Translate(Vector3.back * Time.deltaTime);
 
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            transform.localPosition += Vector3.left;
+            transform.Translate(Vector3.left * Time.deltaTime);
 
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            transform.localPosition += Vector3.right;
+            transform.Translate(Vector3.right * Time.deltaTime);
 
         }
 
 
 
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Muro"))
+        {
+            canJump = true;
+
+        }
+     
+
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        canJump = false;
+
+    }
+
 }
