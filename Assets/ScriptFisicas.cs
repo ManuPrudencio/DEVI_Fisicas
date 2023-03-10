@@ -25,22 +25,22 @@ public class ScriptFisicas : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime);
+            transform.Translate(new Vector3(0,0,5) * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * Time.deltaTime);
+            transform.Translate(new Vector3(0, 0, -5) * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * Time.deltaTime);
+            transform.Translate(new Vector3(-5, 0, 0) * Time.deltaTime);
 
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * Time.deltaTime);
+            transform.Translate(new Vector3(5, 0, 0) * Time.deltaTime);
 
         }
 
@@ -55,6 +55,16 @@ public class ScriptFisicas : MonoBehaviour
 
         }
      
+
+    }
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Suelo"))
+        {
+            Destroy(gameObject);
+
+        }
+
 
     }
 
