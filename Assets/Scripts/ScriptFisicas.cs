@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScriptFisicas : MonoBehaviour
 {
     [SerializeField]
-    public int jumpForce = 1;
+    public int jumpForce = 1000;
 
     [SerializeField]
     public bool canJump;
@@ -51,10 +51,11 @@ public class ScriptFisicas : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Muro"))
         {
-            canJump = true;
+           
 
         }
-     
+        canJump = true;
+
 
     }
     void OnTriggerEnter(Collider collision)
